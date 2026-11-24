@@ -18,35 +18,35 @@ $old = $result['old'] ?? [];
 
 $hasPhoto = is_file(__DIR__ . '/' . $cfg['about_photo']);
 $callUrl = 'tel:+' . $cfg['phone_intl'];
-$waUrl = 'https://wa.me/' . $cfg['phone_intl'] . '?text=' . rawurlencode('Hello Woodworld, I found your website and would like to talk about some furniture.');
+$waUrl = 'https://wa.me/' . $cfg['phone_intl'] . '?text=' . rawurlencode('Hello Joseph, I found your website and would like to talk about some furniture.');
 
 // Gallery shows only when photos exist: assets/img/gallery-1.jpg, gallery-2.jpg ...
 $gallery = glob(__DIR__ . '/assets/img/gallery-*.{jpg,jpeg,png,webp}', GLOB_BRACE) ?: [];
 sort($gallery);
 
 $services = [
-    ['Home furniture', 'Pieces made for the way your home is used, built in our workshop in Ikeja.'],
-    ['Designs you will love', 'Customers say their homes look like paradise. Tell us the look you want and we shape it.'],
-    ['Made to order', 'Share your idea, photos or sizes and we build the piece around them.'],
-    ['Carpentry work', 'Careful carpentry from a team that clients come back to again and again.'],
+    ['Sofas', 'Comfortable sofas and seating for your living room, made with attention to the finish.'],
+    ['Interior furniture', 'Furniture designed for the inside of your home, built around your space and your taste.'],
+    ['Exterior furniture', 'Furniture for outdoor areas, designed to suit the space it goes into.'],
+    ['Furniture design', 'Tell us the look you want and we design the piece with you before we build it.'],
 ];
 
 $steps = [
     ['Tell us what you need', 'Call or message us with your idea, photos or sizes.'],
-    ['Agree the design', 'We talk through the look, the wood and the price before work starts.'],
-    ['We build it', 'Our carpenters make your piece in the workshop in Ikeja.'],
+    ['Agree the design', 'We talk through the look, the materials and the price before work starts.'],
+    ['We build it', 'Your piece is made with close attention to the details.'],
     ['Hand over', 'Your furniture is finished and handed over, ready to use.'],
 ];
 
 $reviews = [
-    ['Janet D.', 'Called the service the best you could ask for and said she looks forward to working with Woodworld again.'],
-    ['Ajibola O.', 'Said the Woodworld carpenters are simply the best and plans to hire them again.'],
-    ['Olamide D.', 'Said her home now looks like paradise and that she loves the designs.'],
+    ['Anjola A.', 'Called all the work brilliant and said it is the best she has seen so far.'],
+    ['Adebayo K.', 'Loved the work and called it exceptional.'],
+    ['Emmanuel B.', 'Said he is good at everything he does.'],
 ];
 
-$good = ['Furniture manufacturer', 'Open until 6 pm', 'Ikeja, Lagos'];
-$topics = ['Home furniture', 'Made to order', 'Carpentry work', 'Something else'];
-$tape = ['Home furniture', 'Made to order', 'Carpentry', 'Ikeja workshop', 'Rated 5.0 on Google'];
+$good = ['Furniture maker', 'Closes 5 pm', 'Ifako-Ijaiye, Lagos'];
+$topics = ['Sofas', 'Interior furniture', 'Exterior furniture', 'Furniture design', 'Something else'];
+$tape = ['Sofas', 'Interior furniture', 'Exterior furniture', 'Furniture design', 'Rated 5.0 on Google'];
 
 require __DIR__ . '/includes/header.php';
 ?>
@@ -57,9 +57,9 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="row align-items-center g-5">
         <div class="col-lg-7 reveal">
-          <span class="kicker kicker-light"><?= e($cfg['city']) ?> &middot; Ifako-Ijaiye, Ikeja</span>
-          <h1 class="mt-3">Furniture<br><em>done</em><br>properly.</h1>
-          <p class="hero-lead mt-4">Woodworld Industrial Services is a furniture manufacturer in Ikeja. Beautiful designs, built by careful carpenters for homes across Lagos.</p>
+          <span class="kicker kicker-light"><?= e($cfg['city']) ?> &middot; Ifako-Ijaiye</span>
+          <h1 class="mt-3">Furniture<br><em>designed</em><br>for you.</h1>
+          <p class="hero-lead mt-4">Interior and exterior furniture design from Ifako-Ijaiye, Lagos. Sofas and furniture made with care, for homes and outdoor spaces.</p>
           <div class="d-flex flex-wrap gap-3 mt-4">
             <a href="<?= e($waUrl) ?>" target="_blank" rel="noopener" class="btn btn-ember btn-lg">Chat on WhatsApp</a>
             <a href="<?= e($callUrl) ?>" class="btn btn-line-light btn-lg">Call <?= e($cfg['phone']) ?></a>
@@ -69,7 +69,7 @@ require __DIR__ . '/includes/header.php';
           </div>
         </div>
         <div class="col-lg-5">
-          <div id="scene" class="scene" role="img" aria-label="Animated 3D wooden bookcase that turns as you scroll"></div>
+          <div id="scene" class="scene" role="img" aria-label="Animated 3D sofa that turns as you scroll"></div>
         </div>
       </div>
     </div>
@@ -101,12 +101,12 @@ require __DIR__ . '/includes/header.php';
         </div>
         <div class="col-md-7 col-lg-8 reveal">
           <span class="kicker">About us</span>
-          <p class="statement mt-3">Good wood. <mark>Honest work.</mark></p>
-          <p class="text-ink-2 fs-5 mt-3">Woodworld Industrial Services is a furniture manufacturer on Adekoya Street in Ifako-Ijaiye, Ikeja. We make furniture for homes, and the reviews say it best: customers come back, and they love the designs.</p>
+          <p class="statement mt-3">Designed well. <mark>Made to last.</mark></p>
+          <p class="text-ink-2 fs-5 mt-3">Joseph Horlarmide Interior and Exterior Furniture Design Services is a furniture maker on Abosule Street in Ifako-Ijaiye, Lagos. We design and build sofas and furniture for the inside and outside of your home, and customers call the work brilliant and exceptional.</p>
           <ul class="stats mt-5">
             <li><strong><?= e($cfg['rating']) ?>/5</strong><span>Google rating, <?= (int)$cfg['rating_count'] ?> reviews</span></li>
-            <li><strong>Ikeja</strong><span>Workshop on Adekoya St</span></li>
-            <li><strong>6 pm</strong><span>Closing time, call first</span></li>
+            <li><strong>Ifako-Ijaiye</strong><span>12 Abosule St, Lagos</span></li>
+            <li><strong>9 am to 5 pm</strong><span>Call before you visit</span></li>
           </ul>
         </div>
       </div>
@@ -157,7 +157,7 @@ require __DIR__ . '/includes/header.php';
       <div class="reveal"><span class="kicker">Our work</span><h2 class="mt-2 mb-5">Recent pieces</h2></div>
       <div class="gallery">
         <?php foreach ($gallery as $path): ?>
-          <figure class="reveal"><img src="assets/img/<?= e(basename($path)) ?>" alt="Furniture made by Woodworld" loading="lazy"></figure>
+          <figure class="reveal"><img src="assets/img/<?= e(basename($path)) ?>" alt="Furniture by Joseph Horlarmide" loading="lazy"></figure>
         <?php endforeach; ?>
       </div>
     </div>
@@ -169,7 +169,7 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="reveal">
         <span class="kicker" style="color:var(--ink)">Reviews</span>
-        <h2 class="mt-2">Customers come back</h2>
+        <h2 class="mt-2">What customers say</h2>
         <p class="fs-5 mt-2 mb-5">Summarised from public Google reviews. <a href="<?= e($cfg['maps_url']) ?>" target="_blank" rel="noopener" style="color:var(--ink)">Read them all on Google</a>.</p>
       </div>
       <div class="row g-4">

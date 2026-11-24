@@ -67,6 +67,7 @@ function init(host) {
 
   const rig = new THREE.Group();
   scene.add(rig);
+  rig.scale.setScalar(1.3);
 
   const W = 3.4, H = 4.6, D = 1.5, T = 0.1;
   const wood = new THREE.MeshStandardMaterial({ map: woodTexture('#b9854f', '#3f2412', 1234), roughness: 0.55, metalness: 0.02 });
@@ -81,47 +82,33 @@ function init(host) {
     return m;
   };
 
-  // Carcass
-  box(T, H, D, wood, -W / 2 + T / 2, 0, 0);          // left side
-  box(T, H, D, wood, W / 2 - T / 2, 0, 0);           // right side
-  box(W, T, D, wood, 0, H / 2 - T / 2, 0);           // top
-  box(W, T, D, wood, 0, -H / 2 + 0.35, 0);           // bottom
-  box(W, 0.3, D - 0.1, inside, 0, -H / 2 + 0.15, -0.05); // plinth
-  box(W - 2 * T, H - 0.4, 0.06, inside, 0, 0.1, -D / 2 + 0.03); // back
-  // Shelves
-  const innerW = W - 2 * T;
-  const shelfYs = [-1.35, -0.2, 0.95, 2.0];
-  shelfYs.forEach((y) => box(innerW, T * 0.8, D - 0.2, inside, 0, y, -0.05));
-  // Books
-  const cols = [0xd4f23a, 0xf4f1e8, 0x2f6b4f, 0xc9703a, 0x1c3a2c, 0xe8d9b5, 0x8aa84a];
-  const rows = [
-    { y: -1.35, h: [0.8, 0.95, 0.7, 0.9, 0.85], x0: -1.3 },
-    { y: -0.2,  h: [0.9, 0.7, 1.0, 0.8, 0.75, 0.95], x0: -1.35 },
-    { y: 0.95,  h: [0.75, 0.9, 0.8], x0: -1.2 },
-  ];
-  rows.forEach((r, ri) => {
-    let x = r.x0;
-    r.h.forEach((h, i) => {
-      const w = 0.16 + ((i * 7 + ri * 3) % 4) * 0.04;
-      const book = new THREE.Mesh(
-        new RoundedBoxGeometry(w, h, 0.85, 2, 0.02),
-        new THREE.MeshStandardMaterial({ color: cols[(i + ri * 2) % cols.length], roughness: 0.8 })
-      );
-      book.position.set(x + w / 2, r.y + T * 0.4 + h / 2, -0.05);
-      rig.add(book);
-      x += w + 0.04;
-    });
+  // Sofa
+  const fabric = new THREE.MeshStandardMaterial({ color: 0x2f6b4f, roughness: 0.95 });
+  const fabric2 = new THREE.MeshStandardMaterial({ color: 0x3a8a63, roughness: 0.95 });
+  const rb = (w, h, d, mat, x, y, z, r = 0.12) => {
+    const m = new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 4, r), mat);
+    m.position.set(x, y, z);
+    rig.add(m);
+    return m;
+  };
+  [[-1.45, -0.6], [1.45, -0.6], [-1.45, 0.6], [1.45, 0.6]].forEach(([x, z]) => {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.05, 0.35, 16), woodDoor);
+    leg.position.set(x, -1.75, z);
+    rig.add(leg);
   });
-  // Brass sphere, plant pot and leaves
-  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.28, 32, 24), metal);
-  ball.position.set(0.95, 0.95 + T * 0.4 + 0.28, -0.05);
-  rig.add(ball);
-  const pot = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.2, 0.4, 24), woodDoor);
-  pot.position.set(0.95, -0.2 + T * 0.4 + 0.2, -0.05);
-  rig.add(pot);
-  const leaf = new THREE.Mesh(new THREE.IcosahedronGeometry(0.34, 1), new THREE.MeshStandardMaterial({ color: 0x2f6b4f, roughness: 0.9 }));
-  leaf.position.set(0.95, -0.2 + 0.4 + 0.4, -0.05);
-  rig.add(leaf);
+  rb(3.5, 0.5, 1.6, fabric, 0, -1.3, 0.05, 0.1);              // base
+  rb(3.5, 1.35, 0.45, fabric, 0, -0.6, -0.6, 0.18);           // back
+  rb(0.4, 1.0, 1.6, fabric, -1.75, -0.95, 0.05, 0.16);        // arms
+  rb(0.4, 1.0, 1.6, fabric, 1.75, -0.95, 0.05, 0.16);
+  [-1.07, 0, 1.07].forEach((x) => {
+    rb(1.05, 0.34, 1.05, fabric2, x, -0.93, 0.2, 0.14);       // seat cushions
+    const bk = rb(1.05, 0.85, 0.3, fabric2, x, -0.4, -0.28, 0.14); // back cushions
+    bk.rotation.x = -0.12;
+  });
+  const pillow = rb(0.75, 0.75, 0.22, new THREE.MeshStandardMaterial({ color: 0xd4f23a, roughness: 0.9 }), 1.0, -0.42, 0.1, 0.1);
+  pillow.rotation.set(-0.2, -0.35, 0.25);
+  const pillow2 = rb(0.6, 0.6, 0.2, new THREE.MeshStandardMaterial({ color: 0xf4f1e8, roughness: 0.9 }), -1.1, -0.5, 0.1, 0.1);
+  pillow2.rotation.set(-0.2, 0.3, -0.2);
 
   // Floor shadow
   const sc = document.createElement('canvas');
@@ -136,7 +123,7 @@ function init(host) {
     new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sc), transparent: true, depthWrite: false })
   );
   shadow.rotation.x = -Math.PI / 2;
-  shadow.position.set(0, -H / 2 - 0.02, 0);
+  shadow.position.set(0, -1.93, 0);
   rig.add(shadow);
 
   // Drifting sawdust
@@ -186,13 +173,12 @@ function init(host) {
 
   function frame() {
     const t = clock.getElapsedTime();
-    ball.rotation.y = t * 0.8;
-    leaf.rotation.y = t * 0.3;
+    pillow.rotation.z = 0.25 + Math.sin(t * 1.2) * 0.05;
 
     const scrollTurn = Math.min(window.scrollY, 1400) * 0.0042;
     rig.rotation.y += ((-0.5 + scrollTurn + Math.sin(t * 0.45) * 0.14 + pointer.x * 0.22) - rig.rotation.y) * 0.08;
     rig.rotation.x += ((pointer.y * 0.06) - rig.rotation.x) * 0.05;
-    rig.position.y = Math.sin(t * 0.9) * 0.08;
+    rig.position.y = 1.25 + Math.sin(t * 0.9) * 0.08;
 
     const p = dust.geometry.attributes.position;
     for (let i = 0; i < N; i++) {

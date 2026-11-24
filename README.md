@@ -1,10 +1,10 @@
-# Woodworld Industrial Services website
+# Joseph Horlarmide Interior and Exterior Furniture Design Services website
 
-PHP 7.4+ site with Bootstrap 5.3 and a Three.js 3D bookcase in the hero.
+PHP 7.4+ site with Bootstrap 5.3 and a Three.js 3D sofa in the hero.
 
 ## Run it locally
 
-    cd woodworld-industrial
+    cd joseph-horlarmide
     php -S localhost:8000
 
 Needs an internet connection: Bootstrap, Three.js and fonts load from CDNs.

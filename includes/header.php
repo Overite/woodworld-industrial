@@ -1,6 +1,6 @@
 <?php /** @var array $cfg */
   $shareTitle = $cfg['name'] . ' | ' . $cfg['city'];
-  $shareDesc  = 'Furniture manufacturer in Ikeja, Lagos. Beautiful designs, built by careful carpenters. Call ' . $cfg['phone'] . '.';
+  $shareDesc  = 'Interior and exterior furniture design in Ifako-Ijaiye, Lagos. Sofas and furniture made with care. Call ' . $cfg['phone'] . '.';
   $shareUrl   = $cfg['site_url'];
   $shareImg   = $cfg['site_url'] . $cfg['share_image'];
 ?>
@@ -22,7 +22,7 @@
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="<?= e($cfg['name']) ?>: furniture built in Ikeja, Lagos.">
+  <meta property="og:image:alt" content="<?= e($cfg['name']) ?>: furniture designed for you.">
   <meta property="og:locale" content="en_NG">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="<?= e($shareTitle) ?>">
@@ -41,9 +41,8 @@
       'telephone' => '+' . $cfg['phone_intl'],
       'address' => [
           '@type' => 'PostalAddress',
-          'streetAddress' => '8 Adekoya St, Ifako-Ijaiye',
-          'addressLocality' => 'Ikeja',
-          'postalCode' => '100001',
+          'streetAddress' => '12 Abosule St, Ifako-Ijaiye',
+          'addressLocality' => 'Lagos',
           'addressCountry' => 'NG',
       ],
       'geo' => ['@type' => 'GeoCoordinates', 'latitude' => $cfg['maps_lat'], 'longitude' => $cfg['maps_lng']],
@@ -59,7 +58,7 @@
       <span class="brand-mark" aria-hidden="true">
         <svg width="30" height="30" viewBox="0 0 32 32"><rect x="3" y="3" width="26" height="26" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M16 3v26M3 16h26" stroke="currentColor" stroke-width="3"/></svg>
       </span>
-      <span class="brand-text">WOODWORLD<small>Industrial Services</small></span>
+      <span class="brand-text">JOSEPH HORLARMIDE<small>Furniture Design Services</small></span>
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
