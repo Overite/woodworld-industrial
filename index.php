@@ -90,9 +90,9 @@ require __DIR__ . '/includes/header.php';
         <div class="col-md-5 col-lg-4 reveal">
           <div class="frame" data-tilt>
             <?php if ($hasPhoto): ?>
-              <img src="<?= e($cfg['about_photo']) ?>" alt="A wooden bookcase in the Woodworld style" loading="lazy">
+              <img src="<?= e($cfg['about_photo']) ?>" alt="Our workshop" loading="lazy">
             <?php else: ?>
-              <img src="<?= e($cfg['about_image']) ?>" alt="<?= e($cfg['about_alt']) ?>" loading="lazy" referrerpolicy="no-referrer">
+              <img src="<?= e($cfg['about_image']) ?>" alt="<?= e($cfg['about_alt']) ?>" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='<?= e($cfg['about_fallback']) ?>';">
             <?php endif; ?>
           </div>
           <?php if (!$hasPhoto): ?>

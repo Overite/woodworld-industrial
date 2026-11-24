@@ -32,10 +32,11 @@ return [
     // Shown in the About section until you add your own workshop photo at assets/img/workshop.jpg.
     // Free stock photo (Unsplash License). Replace it with your own photo at any time.
     'about_photo'  => 'assets/img/workshop.jpg',
-    'about_image'  => 'https://images.unsplash.com/photo-1761544775611-aaa6fa2e5b3d?auto=format&fit=crop&w=1000&q=80',
-    'about_alt'    => 'Woodworking tools arranged on a dark wall',
-    'about_credit' => 'Photo: Minh Đức on Unsplash',
-    'about_credit_url' => 'https://unsplash.com/photos/various-woodworking-tools-neatly-arranged-on-a-dark-wall-WWLuyDP3t1U',
+    'about_image'  => 'https://images.unsplash.com/photo-1687422810663-c316494f725a?auto=format&fit=crop&w=1000&q=80',
+    'about_alt'    => 'A carpenter smiling as he works on a piece of wood',
+    'about_credit' => 'Photo: mkumbwajr on Unsplash',
+    'about_credit_url' => 'https://unsplash.com/photos/a-man-smiles-as-he-works-on-a-piece-of-wood-PxlKOcj0a3Q',
+    'about_fallback' => 'assets/img/about-fallback.jpg',
 
     'maps_lat'  => 6.6419616,
     'maps_lng'  => 3.3274652,
